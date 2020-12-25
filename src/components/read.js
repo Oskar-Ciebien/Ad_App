@@ -28,7 +28,7 @@ export class Read extends React.Component {
                         ads: response.data
                     }
                 )
-                console.log(response.data.myad)
+                console.log(response.data.myads)
                 console.log(this.state.ads)
             })
             // If error - print to console
@@ -48,7 +48,7 @@ export class Read extends React.Component {
                         ads: response.data
                     }
                 )
-                console.log(response.data.myad)
+                console.log(response.data.myads)
                 console.log(this.state.ads)
             })
             // If error - print to console
@@ -63,7 +63,7 @@ export class Read extends React.Component {
             // read.js Main Code
             <div>
                 <h3>Hello from Read Component</h3>
-                <Ads myad={this.state.ads} ReloadData={this.ReloadData}></Ads>
+                <Ads myads={this.state.ads} ReloadData={this.ReloadData}></Ads>
             </div>
         );
     }

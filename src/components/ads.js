@@ -1,4 +1,4 @@
-// Imports from React and MovieItem
+// Imports from React and AdItem
 import React from 'react';
 import { AdItem } from './adItem';
 
@@ -7,9 +7,9 @@ export class Ads extends React.Component {
 
     render() {
         // Ads Main Code
-        return this.props.myad.map(
-            (ads)=>{
-                return <AdItem myad={ads} ReloadData={this.props.ReloadData}></AdItem>
+        return this.props.myads.map(
+            (ad)=>{
+                return <AdItem myad={ad} ReloadData={this.props.ReloadData}></AdItem>
             }
         );
     }
