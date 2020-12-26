@@ -6,17 +6,6 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const path = require('path');
 
-// CORS
-const cors = require('cors');
-app.use(cors());
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
 // Build - Static for Front-End
 app.use(express.static(path.join(__dirname, '../build')));
 app.use('/static', express.static(path.join(__dirname, 'build/static')));
@@ -39,16 +28,10 @@ const adSchema = new Schema({
     Name: String,
     Description: String,
     Image: String
-})
+}) // adSchema - End
 
 // Model
 const adModel = mongoose.model('ad', adSchema);
-
-// Home page
-// app.get('/', (req, res) => {
-//     // Main Code
-//     res.send('Hello World!')
-// })
 
 // /api/ads/:id
 app.get('/api/ads/:id', (req, res) => {
@@ -56,8 +39,8 @@ app.get('/api/ads/:id', (req, res) => {
 
     adModel.findById(req.params.id, (err, data) => {
         res.json(data);
-    })
-})
+    }) // END
+}) // END
 
 // Edit Ad
 app.put('/api/ads/:id', (req, res) => {
@@ -68,19 +51,20 @@ app.put('/api/ads/:id', (req, res) => {
         req.body,
         (err, data) => {
             res.send(data);
-        })
-})
+        }) // END
+}) // END
 
 // Delete Ad
 app.delete('/api/ads/:id', (req, res) => {
     console.log("Delete " + req.params.id);
 
+    // Find and delete item using ID
     adModel.findByIdAndDelete({_id:req.params.id}, (err, data) => {
         if (err)
             res.send(err);
         res.send(data);
-    })
-})
+    }) // END
+}) // END
 
 // /api/ads
 app.get('/api/ads', (req, res) => {
@@ -88,8 +72,8 @@ app.get('/api/ads', (req, res) => {
     // Getting data from Database
     adModel.find((err, data) => {
         res.json(data);
-    })
-})
+    }) // END
+}) // END
 
 // Post
 app.post('/api/ads', (req, res) => {
@@ -100,17 +84,18 @@ app.post('/api/ads', (req, res) => {
         Name: req.body.Name,
         Description: req.body.Description,
         Image: req.body.Image
-    })
+    }) // END
 
+    // Notify that data has been sent
     res.send('Data Received!')
-})
+}) // END
 
 // All other urls
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/../build/index.html'));
-})
+}) // END
 
 // Listen
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
-})
+}) // END

@@ -1,4 +1,4 @@
-// Imports from React, Components and Bootstrap
+// All imports
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,12 +18,18 @@ class App extends React.Component {
       <Router>
         <div className="App">
           {/* Navbar for all components */}
-          <Navbar bg="primary" variant="dark">
-            <Navbar.Brand href="/">Navbar</Navbar.Brand>
+          <Navbar bg="dark" variant="dark">
+            {/* Navbar Brand with Application Name - SwiftAds */}
+            <Navbar.Brand href="/">SwiftAds</Navbar.Brand>
+            {/* Navbar Options (Redirections) */}
             <Nav className="mr-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/read">View Ads</Nav.Link>
-              <Nav.Link href="/create">Make a new Ad</Nav.Link>
+              <Nav.Link href="/read">View All Ads</Nav.Link>
+              <Nav.Link href="/create">Create an Ad</Nav.Link>
+            </Nav>
+            {/* New navbar to add website motto */}
+            <Nav>
+              <Nav.Link>We help you sell</Nav.Link>
             </Nav>
           </Navbar>
 
@@ -33,15 +39,15 @@ class App extends React.Component {
             <Route path='/' component={Content} exact></Route>
             {/* Route to the create page with the Create Component */}
             <Route path='/create' component={Create}></Route>
-            {/* Route to the read page with the Footer Component*/}
+            {/* Route to the read page with the Read Component*/}
             <Route path='/read' component={Read}></Route>
             {/* Route to the edit page with the Edit Component*/}
             <Route path='/edit/:id' component={Edit}></Route>
           </Switch>
         </div>
       </Router>
-    ); // Return end
-  } // Render End
-} // Class End
+    ); // Return - End
+  } // Render - End
+} // Class - End
 
 export default App;

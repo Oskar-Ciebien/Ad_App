@@ -1,4 +1,4 @@
-// Import from React and Axios
+// Imports
 import React from 'react';
 import axios from 'axios';
 
@@ -20,35 +20,36 @@ export class Create extends React.Component {
             Name: '',
             Description: '',
             Image: '',
-        }
-
+        } // state - End
     } // Constructor - End
 
     // onChangeAdDescription() - Start
     onChangeAdDescription(event) {
         this.setState({
             Description: event.target.value
-        })
+        }) // setState - End
     } // onChangeAdDescription() - End
 
     // onChangeAdName() - Start
     onChangeAdName(event) {
         this.setState({
             Name: event.target.value
-        })
+        }) // setState - End
     } // onChangeAdName() - End
 
     // handleSubmit() - Start
     handleSubmit(event) {
+        // preventDeafault
         event.preventDefault();
-        alert("Ad Added " + this.state.Name + " " + this.state.Description + " " + this.state.Image);
+        // Alert user that ad has been added succesfully
+        alert(this.state.Name + " has been added to the list.");
 
         // Constant newAd
         const newAd = {
             Name: this.state.Name,
             Description: this.state.Description,
             Image: this.state.Image
-        }
+        } // newAd - End
 
         // Axios Post
         axios.post('http://localhost:4000/api/ads', newAd)
@@ -60,21 +61,47 @@ export class Create extends React.Component {
     onChangeAdImage(event) {
         this.setState({
             Image: event.target.value
-        })
+        }) // setState - End
     }  // onChangeAdImage() - End
 
+    // Render
     render() {
+        // CSS Styles
+        // title
+        const title = {
+            color: "black",
+            fontFamily: "Times New Roman",
+            fontWeight: "bold",
+            fontSize: "23px"
+        } // title - End
+
+        // submit
+        const submit = {
+            color: "white",
+            fontFamily: "Times New Roman",
+            fontSize: "20px"
+        } // submit - End
+
+        // descriptionBox
+        const descriptionBox = {
+            maxHeight: "300px",
+            minHeight: "100px",
+            height: "100px"
+        } // descriptionBox - End
+
+        // Return
         return (
             // Create Main Code
             <div>
-                <h1>This is the Create Component.</h1>
-
+                <br></br>
                 {/* Form with handleSubmit */}
                 <form onSubmit={this.handleSubmit}>
+
                     {/* Add Ad Name */}
-                    <div className="form-group">
-                        <label>Add ad name: </label>
+                    <div style={title} className="form-group">
+                        <label>- Name of your ad -</label>
                         <input type="text"
+                            placeholder="Short name for your ad..."
                             value={this.state.Name}
                             onChange={this.onChangeAdName}
                             className="form-control"
@@ -82,32 +109,35 @@ export class Create extends React.Component {
                     </div>
 
                     {/* Add Ad Description */}
-                    <div className="form-group">
-                        <label>Add ad description: </label>
-                        <input type="text"
+                    <div style={title} className="form-group">
+                        <label>- Description of your ad -</label>
+                        <textarea placeholder="Your description..."
+                            style={descriptionBox}
                             value={this.state.Description}
                             onChange={this.onChangeAdDescription}
                             className="form-control"
-                        ></input>
+                        ></textarea>
                     </div>
 
                     {/* Add Ad Image */}
-                    <div className="form-group">
-                        <label>Add ad image url: </label>
+                    <div style={title} className="form-group">
+                        <label>- Image URL for your ad -</label>
                         <input type="text"
+                            placeholder="Image URL..."
                             value={this.state.Image}
                             onChange={this.onChangeAdImage}
                             className="form-control"
                         ></input>
                     </div>
-
+                    <br></br>
                     {/* Submit */}
-                    <div>
-                        <input
-                            type="submit"></input>
+                    <div style={submit}>
+                        <hr></hr>
+                        <input type="submit" value="Publish Ad"></input>
+                        <hr></hr>
                     </div>
                 </form>
             </div>
-        );
-    }
-}
+        ); // Return END
+    } // Render END
+} // Class END

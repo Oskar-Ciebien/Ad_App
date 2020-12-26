@@ -1,16 +1,17 @@
-// Imports from React, Ads and Axios
+// Imports
 import React from 'react';
-import { Ads } from './ads';
 import axios from 'axios';
+import { Ads } from './ads';
 
 // Read Class Component - Inherits from React.Component
 export class Read extends React.Component {
-
+    // Constructor
     constructor() {
         super();
 
+        // Setting ReloadData
         this.ReloadData = this.ReloadData.bind(this);
-    }
+    } // Constructor END
 
     // State
     state = {
@@ -27,15 +28,16 @@ export class Read extends React.Component {
                     {
                         ads: response.data
                     }
-                )
+                ) // setState END
+                // Prints response and ads state
                 console.log(response.data.myads)
                 console.log(this.state.ads)
-            })
+            }) // then END
             // If error - print to console
             .catch((error) => {
                 console.log(error);
-            });
-    }
+            }); // catch END
+    } // ReloadData() END
 
     // componentDidMount Method
     componentDidMount() {
@@ -47,25 +49,27 @@ export class Read extends React.Component {
                     {
                         ads: response.data
                     }
-                )
+                )// setState END
+                // Prints response and ads state
                 console.log(response.data.myads)
                 console.log(this.state.ads)
-            })
+            }) // then END
             // If error - print to console
             .catch((error) => {
                 console.log(error);
-            });
-    }
+            }); // catch END
+    } // componentDidMount() END
 
     // Print everything to page
     render() {
         return (
             // read.js Main Code
             <div>
-                <h3>Hello from Read Component</h3>
+                {/* Breaks */}
+                <br></br>
+                {/* Prints data */}
                 <Ads myads={this.state.ads} ReloadData={this.ReloadData}></Ads>
             </div>
-        );
-    }
-
-}
+        ); // Return END
+    } // render() END
+} // class END
